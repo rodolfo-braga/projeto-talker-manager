@@ -12,6 +12,7 @@ const validateWatchedAt = require('./middlewares/validateWatchedAt');
 const validateRate = require('./middlewares/validateRate');
 const createTalker = require('./middlewares/createTalker');
 const editTalker = require('./middlewares/editTalker');
+const deleteTalker = require('./middlewares/deleteTalker');
 
 const app = express();
 app.use(bodyParser.json());
@@ -47,6 +48,10 @@ app.put('/talker/:id',
   validateRate,
   validateWatchedAt,
   editTalker);
+
+app.delete('/talker/:id',
+  validateToken,
+  deleteTalker);
 
 app.listen(PORT, () => {
   console.log('Online');
